@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+	<script src="vue.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+	<div id="app">
+		<!-- 初始化渲染，不显示在界面，适合运行时条件很少改变的场景 -->
+		<div v-if="type==='A'">
+			A
+		</div>
+		<div v-else-if="type==='B'">
+			B
+		</div>
+		<div v-else-if="type==='C'">
+			C
+		</div>
+		<div v-else>
+			Not A/B/C
+		</div>
+		
+		<!-- 会渲染在界面,适合频繁切换动作的场景 -->
+		<h1 v-show="ok">Hello!</h1>
+		
+		<ul>
+			<li v-for="item,index in items" :key="index">
+				{{index}}:{{ item.message }}
+			</li>
+		</ul>
+		
+		<ul>
+			<li v-for="value,key in testObj" :key="key">
+				{{key}}:{{ value }}
+			</li>
+		</ul>
+	</div>
+	
+	<script type="text/javascript">
+		var vm = new Vue({
+			el: '#app',
+			data: {
+				type: 'B',
+				ok: false,
+				
+				items: [
+					{message: 'Foo'},
+					{message: 'Bar'}
+				],
+				testObj: {
+					title: 'test-here',
+					author: 'Alex'
+				}
+			}
+		});
+
+		setTimeout(function(){
+			vm.msg="change..."
+		},3000);
+	</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+	<script src="vue.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+	<div id="app">
+		<!-- {{message}} {{name}} -->
+		{{a}}--{{b}}
+	</div>
+	
+	<script type="text/javascript">
+		// var app = new Vue({
+		// 	el: '#app',
+		// 	data: {
+		// 		message: 'Hello boy!',
+		// 		name: 'Alex'
+		// 	}
+		// });
+		
+		var data = { a: 1, b: 123};
+		var vm = new Vue({
+			el: '#app',
+			data: data
+		});
+		
+		// data.a = 'hi new..'
+		
+		// data.a = vm.a
+		vm.$data === data;	//TRUE
+		vm.$el === document.getElementById('app')	//TRUE
+		
+		vm.$watch('a', function(newValue, oldValue){
+			console.log("Changed to " + newValue + " from " +  oldValue)
+		})
+		vm.$data.a = "test";
+	</script>
+</body>
+</html>
